@@ -1,0 +1,40 @@
+<!-- 
+    4. 남의 모델을 이용하기 (이미지 분류 => mobilenet )
+-->
+
+<!DOCTYPE html>
+<html>
+
+<body>
+    <!-- Load TensorFlow.js. This is required to use MobileNet. -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.1"> </script>
+    <!-- Load the MobileNet model. -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0"> </script>
+
+    <!-- Replace this with your image. Make sure CORS settings allow reading the image! -->
+    <img id="img" src="dog.jpg"></img>
+
+    <!-- Place your code in the script tag below. You can also use an external .js file -->
+    <script>
+        // Notice there is no 'import' statement. 'mobilenet' and 'tf' is
+        // available on the index-page because of the script tag above.
+
+        const img = document.getElementById('img');
+
+        // Load the model.
+        mobilenet.load().then(model => {
+            // Classify => 분류
+            // predictions => 예측
+            model.classify(img).then(predictions => { // 리트리버 이미지
+                console.log('Predictions: ');
+                console.log(predictions);
+                /* 
+                    출력값 => 
+                    견종 예측 '이름/확률'을 배열로 던져줌
+                */
+            });
+        });
+    </script>
+</body>
+
+</html>
